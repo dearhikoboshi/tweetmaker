@@ -673,7 +673,7 @@ async function saveCard() {
     ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
     ctx.drawImage(hdrImg, dx * SCALE, dy * SCALE, dW * SCALE, dH * SCALE);
     hdrImg.style.display = 'none';
-    hdrZone.appendChild(hdrPreCanvas);
+    hdrZone.insertBefore(hdrPreCanvas, hdrZone.firstChild);
   }
 
   // 프로필 아바타: 동일하게 사전 캔버스 처리
