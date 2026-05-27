@@ -158,10 +158,10 @@ textarea.pinput{resize:none;}
 .toast{display:none;position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:var(--t1);color:#fff;padding:9px 22px;border-radius:9999px;font-size:13px;font-weight:600;z-index:9999;white-space:nowrap;}
 
 @media(max-width:700px){
-  .workspace{flex-direction:column;padding:10px;gap:14px;}
-  .edit-panel{width:100%;}
-  .card{max-width:380px;width:100%;}
-  .preview-wrap{width:100%;display:flex;flex-direction:column;align-items:center;}
+ .workspace{flex-direction:column;padding:10px;gap:14px;}
+ .edit-panel{width:100%;}
+ .card{max-width:380px;width:100%;}
+ .preview-wrap{width:100%;display:flex;flex-direction:column;align-items:center;}
 }
 
 /* 저장 중 숨길 요소 */
@@ -171,186 +171,186 @@ textarea.pinput{resize:none;}
 <body>
 
 <nav class="topnav">
-  <span class="topnav-title">Profile Card Maker</span>
-  <button class="btn-save" id="saveBtn" onclick="saveCard()">PNG 저장</button>
+ <span class="topnav-title">Profile Card Maker</span>
+ <button class="btn-save" id="saveBtn" onclick="saveCard()">PNG 저장</button>
 </nav>
 
 <div class="workspace">
-  <!-- 카드 미리보기 -->
-  <div class="preview-wrap">
-    <div class="preview-label">미리보기 — 클릭해서 직접 편집</div>
-    <div class="card" id="card">
+ <!-- 카드 미리보기 -->
+ <div class="preview-wrap">
+ <div class="preview-label">미리보기 — 클릭해서 직접 편집</div>
+ <div class="card" id="card">
 
-      <!-- 헤더 -->
-      <div class="card-hdr" id="hdrZone" onclick="upload('header')">
-        <img id="hdrImg" src="" alt="" style="display:none">
-        <div class="hdr-overlay hide-on-save">
-          <div class="hdr-hint">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-            헤더 사진 추가
-          </div>
-        </div>
-        <div class="hdr-credit" id="hdrCredit" style="display:none">
-          <span id="hdrCreditText"></span>
-        </div>
-      </div>
+ <!-- 헤더 -->
+ <div class="card-hdr" id="hdrZone" onclick="upload('header')">
+ <img id="hdrImg" src="" alt="" style="display:none">
+ <div class="hdr-overlay hide-on-save">
+ <div class="hdr-hint">
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+ 헤더 사진 추가
+ </div>
+ </div>
+ <div class="hdr-credit" id="hdrCredit" style="display:none">
+ <span id="hdrCreditText"></span>
+ </div>
+ </div>
 
-      <!-- 프로필 바디 -->
-      <div class="card-body">
-        <div class="av-row">
-          <div class="avatar" id="avZone" onclick="upload('avatar')">
-            <img id="avImg" src="" alt="" style="display:none">
-            <div class="av-overlay hide-on-save">
-              <div class="av-hint">📷</div>
-            </div>
-          </div>
-          <button class="fol-btn">팔로우</button>
-        </div>
+ <!-- 프로필 바디 -->
+ <div class="card-body">
+ <div class="av-row">
+ <div class="avatar" id="avZone" onclick="upload('avatar')">
+ <img id="avImg" src="" alt="" style="display:none">
+ <div class="av-overlay hide-on-save">
+ <div class="av-hint"></div>
+ </div>
+ </div>
+ <button class="fol-btn">팔로우</button>
+ </div>
 
-        <div contenteditable="true" id="nameEl" class="disp-name" data-ph="이름 / 닉네임" spellcheck="false"></div>
-        <div contenteditable="true" id="handleEl" class="handle" data-ph="@ID" spellcheck="false"></div>
-        <textarea id="bioEl" class="bio-ta" placeholder="자기소개를 입력해주세요" spellcheck="false" rows="1"
-          oninput="ar(this);syncTo('bioIn',this.value)"></textarea>
+ <div contenteditable="true" id="nameEl" class="disp-name" data-ph="이름 / 닉네임" spellcheck="false"></div>
+ <div contenteditable="true" id="handleEl" class="handle" data-ph="@ID" spellcheck="false"></div>
+ <textarea id="bioEl" class="bio-ta" placeholder="자기소개를 입력해주세요" spellcheck="false" rows="1"
+ oninput="ar(this);syncTo('bioIn',this.value)"></textarea>
 
-        <div class="follow-row" id="followRow" style="display:none">
-          <div class="fol-item">
-            <input class="fol-num" id="followingNum" type="text" value="0" spellcheck="false"
-              oninput="syncTo('followingIn',this.value)">
-            <span class="fol-lbl">팔로잉</span>
-          </div>
-          <div class="fol-item">
-            <input class="fol-num" id="followerNum" type="text" value="0" spellcheck="false"
-              oninput="syncTo('followerIn',this.value)">
-            <span class="fol-lbl">팔로워</span>
-          </div>
-        </div>
+ <div class="follow-row" id="followRow" style="display:none">
+ <div class="fol-item">
+ <input class="fol-num" id="followingNum" type="text" value="0" spellcheck="false"
+ oninput="syncTo('followingIn',this.value)">
+ <span class="fol-lbl">팔로잉</span>
+ </div>
+ <div class="fol-item">
+ <input class="fol-num" id="followerNum" type="text" value="0" spellcheck="false"
+ oninput="syncTo('followerIn',this.value)">
+ <span class="fol-lbl">팔로워</span>
+ </div>
+ </div>
 
-        <div class="meta-row">
-          <div class="meta-item" id="locationItem" style="display:none">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <input class="meta-in" id="locEl" placeholder="위치" spellcheck="false" oninput="syncTo('locIn',this.value)">
-          </div>
-          <div class="meta-item" id="linkItem" style="display:none">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
-            <input class="meta-in" id="linkEl" placeholder="링크" spellcheck="false" oninput="syncTo('linkIn',this.value)">
-          </div>
-        </div>
-      </div>
+ <div class="meta-row">
+ <div class="meta-item" id="locationItem" style="display:none">
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+ <input class="meta-in" id="locEl" placeholder="위치" spellcheck="false" oninput="syncTo('locIn',this.value)">
+ </div>
+ <div class="meta-item" id="linkItem" style="display:none">
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+ <input class="meta-in" id="linkEl" placeholder="링크" spellcheck="false" oninput="syncTo('linkIn',this.value)">
+ </div>
+ </div>
+ </div>
 
-      <hr class="tweet-divider">
-      <div id="tweetsWrap"></div>
-      <button class="add-tweet-btn hide-on-save" onclick="addTweet()">+ 트윗 추가</button>
+ <hr class="tweet-divider">
+ <div id="tweetsWrap"></div>
+ <button class="add-tweet-btn hide-on-save" onclick="addTweet()">+ 트윗 추가</button>
 
-    </div><!-- /#card -->
-  </div>
+ </div><!-- /#card -->
+ </div>
 
-  <!-- 편집 패널 -->
-  <div class="edit-panel">
-    <div class="pcard">
-      <div class="ptitle">✏️ 텍스트 편집</div>
-      <div class="pfield">
-        <label class="plabel">이름 / 닉네임</label>
-        <input class="pinput" id="nameIn" placeholder="이름 입력"
-          oninput="syncCE('nameEl',this.value);syncTweetNames(this.value)">
-      </div>
-      <div class="pfield">
-        <label class="plabel">ID</label>
-        <input class="pinput" id="handleIn" placeholder="@ID"
-          oninput="syncCE('handleEl',this.value);syncTweetHandles(this.value)">
-      </div>
-      <div class="pfield">
-        <label class="plabel">자기소개</label>
-        <textarea class="pinput" rows="3" id="bioIn" placeholder="소개글 입력"
-          oninput="syncTA('bioEl',this.value)"></textarea>
-      </div>
+ <!-- 편집 패널 -->
+ <div class="edit-panel">
+ <div class="pcard">
+ <div class="ptitle">텍스트 편집</div>
+ <div class="pfield">
+ <label class="plabel">이름 / 닉네임</label>
+ <input class="pinput" id="nameIn" placeholder="이름 입력"
+ oninput="syncCE('nameEl',this.value);syncTweetNames(this.value)">
+ </div>
+ <div class="pfield">
+ <label class="plabel">ID</label>
+ <input class="pinput" id="handleIn" placeholder="@ID"
+ oninput="syncCE('handleEl',this.value);syncTweetHandles(this.value)">
+ </div>
+ <div class="pfield">
+ <label class="plabel">자기소개</label>
+ <textarea class="pinput" rows="3" id="bioIn" placeholder="소개글 입력"
+ oninput="syncTA('bioEl',this.value)"></textarea>
+ </div>
 
-      <hr class="pdiv">
-      <div class="ptitle">👁 표시 항목</div>
-      <div class="tgl-list">
-        <div class="tgl-row">
-          <span class="tgl-lbl">📍 위치</span>
-          <label class="sw"><input type="checkbox" onchange="tog('locationItem',this.checked);tog('locWrap',this.checked)"><span class="sw-sl"></span></label>
-        </div>
-        <div class="tgl-row">
-          <span class="tgl-lbl">🔗 링크</span>
-          <label class="sw"><input type="checkbox" onchange="tog('linkItem',this.checked);tog('linkWrap',this.checked)"><span class="sw-sl"></span></label>
-        </div>
-        <div class="tgl-row">
-          <span class="tgl-lbl">👥 팔로잉 / 팔로워</span>
-          <label class="sw"><input type="checkbox" onchange="tog('followRow',this.checked);tog('folWrap',this.checked)"><span class="sw-sl"></span></label>
-        </div>
-      </div>
+ <hr class="pdiv">
+ <div class="ptitle">표시 항목</div>
+ <div class="tgl-list">
+ <div class="tgl-row">
+ <span class="tgl-lbl">위치</span>
+ <label class="sw"><input type="checkbox" onchange="tog('locationItem',this.checked);tog('locWrap',this.checked)"><span class="sw-sl"></span></label>
+ </div>
+ <div class="tgl-row">
+ <span class="tgl-lbl">링크</span>
+ <label class="sw"><input type="checkbox" onchange="tog('linkItem',this.checked);tog('linkWrap',this.checked)"><span class="sw-sl"></span></label>
+ </div>
+ <div class="tgl-row">
+ <span class="tgl-lbl">팔로잉 / 팔로워</span>
+ <label class="sw"><input type="checkbox" onchange="tog('followRow',this.checked);tog('folWrap',this.checked)"><span class="sw-sl"></span></label>
+ </div>
+ </div>
 
-      <div id="locWrap" style="display:none;margin-top:9px" class="pfield">
-        <label class="plabel">위치</label>
-        <input class="pinput" id="locIn" placeholder="서울, 대한민국"
-          oninput="document.getElementById('locEl').value=this.value">
-      </div>
-      <div id="linkWrap" style="display:none;margin-top:9px" class="pfield">
-        <label class="plabel">링크</label>
-        <input class="pinput" id="linkIn" placeholder="https://..."
-          oninput="document.getElementById('linkEl').value=this.value">
-      </div>
-      <div id="folWrap" style="display:none;margin-top:9px">
-        <div class="prow2">
-          <div class="pfield">
-            <label class="plabel">팔로잉</label>
-            <input class="pinput" id="followingIn" value="0"
-              oninput="document.getElementById('followingNum').value=this.value">
-          </div>
-          <div class="pfield">
-            <label class="plabel">팔로워</label>
-            <input class="pinput" id="followerIn" value="0"
-              oninput="document.getElementById('followerNum').value=this.value">
-          </div>
-        </div>
-      </div>
+ <div id="locWrap" style="display:none;margin-top:9px" class="pfield">
+ <label class="plabel">위치</label>
+ <input class="pinput" id="locIn" placeholder="서울, 대한민국"
+ oninput="document.getElementById('locEl').value=this.value">
+ </div>
+ <div id="linkWrap" style="display:none;margin-top:9px" class="pfield">
+ <label class="plabel">링크</label>
+ <input class="pinput" id="linkIn" placeholder="https://..."
+ oninput="document.getElementById('linkEl').value=this.value">
+ </div>
+ <div id="folWrap" style="display:none;margin-top:9px">
+ <div class="prow2">
+ <div class="pfield">
+ <label class="plabel">팔로잉</label>
+ <input class="pinput" id="followingIn" value="0"
+ oninput="document.getElementById('followingNum').value=this.value">
+ </div>
+ <div class="pfield">
+ <label class="plabel">팔로워</label>
+ <input class="pinput" id="followerIn" value="0"
+ oninput="document.getElementById('followerNum').value=this.value">
+ </div>
+ </div>
+ </div>
 
-      <hr class="pdiv">
-      <div class="ptitle">🖼️ 사진 업로드</div>
-      <div class="pfield">
-        <label class="plabel">헤더 사진</label>
-        <button class="upload-btn" onclick="upload('header')">헤더 이미지 선택</button>
-      </div>
-      <div class="pfield">
-        <label class="plabel">프로필 사진</label>
-        <button class="upload-btn" onclick="upload('avatar')">프로필 사진 선택</button>
-      </div>
-      <div class="pfield">
-        <label class="plabel">커미션주 닉네임 <span style="color:var(--t3);font-weight:400;text-transform:none;letter-spacing:0">(헤더 상단 가운데)</span></label>
-        <div style="display:flex;gap:8px;align-items:center;">
-        <input class="pinput" id="creditIn" placeholder="예: @nickname" style="flex:1" oninput="setCredit(this.value)">
-          <input type="color" id="creditColorPicker" value="#ffffff" title="글씨 색상"
-            style="width:34px;height:34px;border:1px solid var(--bd);border-radius:7px;cursor:pointer;padding:2px;background:#F7F9F9;"
-            oninput="setCreditColor(this.value)">
-        </div>
-      </div>
+ <hr class="pdiv">
+ <div class="ptitle">사진 업로드</div>
+ <div class="pfield">
+ <label class="plabel">헤더 사진</label>
+ <button class="upload-btn" onclick="upload('header')">헤더 이미지 선택</button>
+ </div>
+ <div class="pfield">
+ <label class="plabel">프로필 사진</label>
+ <button class="upload-btn" onclick="upload('avatar')">프로필 사진 선택</button>
+ </div>
+ <div class="pfield">
+ <label class="plabel">커미션주 닉네임 <span style="color:var(--t3);font-weight:400;text-transform:none;letter-spacing:0">(헤더 상단 가운데)</span></label>
+ <div style="display:flex;gap:8px;align-items:center;">
+ <input class="pinput" id="creditIn" placeholder="예: @nickname" style="flex:1" oninput="setCredit(this.value)">
+ <input type="color" id="creditColorPicker" value="#ffffff" title="글씨 색상"
+ style="width:34px;height:34px;border:1px solid var(--bd);border-radius:7px;cursor:pointer;padding:2px;background:#F7F9F9;"
+ oninput="setCreditColor(this.value)">
+ </div>
+ </div>
 
-      <hr class="pdiv">
-      <div class="ptitle">🐦 트윗 설정</div>
-      <div id="tweetPanel">
-        <p style="font-size:12px;color:var(--t3);text-align:center;padding:4px 0">트윗을 추가하면 여기서 수정할 수 있어요</p>
-      </div>
+ <hr class="pdiv">
+ <div class="ptitle">트윗 설정</div>
+ <div id="tweetPanel">
+ <p style="font-size:12px;color:var(--t3);text-align:center;padding:4px 0">트윗을 추가하면 여기서 수정할 수 있어요</p>
+ </div>
 
-    </div>
-  </div>
+ </div>
+ </div>
 </div>
 
 <input type="file" id="fileIn" accept="image/*" style="display:none" onchange="onFile(event)">
 <input type="file" id="tweetFileIn" accept="image/*" style="display:none" onchange="onTweetFile(event)">
 
 <div class="modal-wrap" id="cropModal">
-  <div class="modal">
-    <div class="modal-head">
-      <span id="cropTitle">사진 자르기</span>
-      <button class="mbtn" onclick="closeModal()">✕</button>
-    </div>
-    <div class="modal-body"><img id="cropImg" src="" alt=""></div>
-    <div class="modal-foot">
-      <button class="mbtn" onclick="closeModal()">취소</button>
-      <button class="mbtn apply" onclick="applyCrop()">적용</button>
-    </div>
-  </div>
+ <div class="modal">
+ <div class="modal-head">
+ <span id="cropTitle">사진 자르기</span>
+ <button class="mbtn" onclick="closeModal()"></button>
+ </div>
+ <div class="modal-body"><img id="cropImg" src="" alt=""></div>
+ <div class="modal-foot">
+ <button class="mbtn" onclick="closeModal()">취소</button>
+ <button class="mbtn apply" onclick="applyCrop()">적용</button>
+ </div>
+ </div>
 </div>
 
 <div class="toast" id="toast"></div>
@@ -365,413 +365,413 @@ function syncTA(id, v) { const e = document.getElementById(id); if (e) { e.value
 function syncTo(id, v) { const e = document.getElementById(id); if (e) e.value = v; }
 function tog(id, on) { const e = document.getElementById(id); if (e) e.style.display = on ? '' : 'none'; }
 function showToast(msg, dur = 2500) {
-  const t = document.getElementById('toast');
-  t.textContent = msg; t.style.display = 'block';
-  clearTimeout(t._t); t._t = setTimeout(() => t.style.display = 'none', dur);
+ const t = document.getElementById('toast');
+ t.textContent = msg; t.style.display = 'block';
+ clearTimeout(t._t); t._t = setTimeout(() =>t.style.display = 'none', dur);
 }
-function syncTweetNames(n) { document.querySelectorAll('.t-name').forEach(e => e.textContent = n || '이름'); }
-function syncTweetHandles(h) { document.querySelectorAll('.t-handle').forEach(e => e.textContent = h || '@ID'); }
+function syncTweetNames(n) { document.querySelectorAll('.t-name').forEach(e =>e.textContent = n || '이름'); }
+function syncTweetHandles(h) { document.querySelectorAll('.t-handle').forEach(e =>e.textContent = h || '@ID'); }
 
 /* 카드 → 패널 양방향 */
-['nameEl', 'handleEl'].forEach(cid => {
-  const el = document.getElementById(cid);
-  if (!el) return;
-  el.addEventListener('input', () => {
-    const p = document.getElementById(cid === 'nameEl' ? 'nameIn' : 'handleIn');
-    if (p) p.value = el.textContent;
-    if (cid === 'nameEl') syncTweetNames(el.textContent);
-    else syncTweetHandles(el.textContent);
-  });
+['nameEl', 'handleEl'].forEach(cid =>{
+ const el = document.getElementById(cid);
+ if (!el) return;
+ el.addEventListener('input', () =>{
+ const p = document.getElementById(cid === 'nameEl' ? 'nameIn' : 'handleIn');
+ if (p) p.value = el.textContent;
+ if (cid === 'nameEl') syncTweetNames(el.textContent);
+ else syncTweetHandles(el.textContent);
+ });
 });
 
 /* ── 트윗 설정 패널 ── */
 function renderTweetPanel() {
-  const panel = document.getElementById('tweetPanel');
-  const ids = Object.keys(tweets);
-  if (!ids.length) {
-    panel.innerHTML = '<p style="font-size:12px;color:var(--t3);text-align:center;padding:4px 0">트윗을 추가하면 여기서 수정할 수 있어요</p>';
-    return;
-  }
-  panel.innerHTML = ids.map((id, i) => `
-    <div class="tweet-setting">
-      <div class="tweet-setting-title">트윗 ${i + 1}</div>
-      <div class="pfield" style="margin-bottom:7px">
-        <label class="plabel">시간</label>
-        <input class="pinput" id="ps-time-${id}" value="${tweets[id].time || '방금'}" placeholder="방금"
-          oninput="updateTime('${id}',this.value)">
-      </div>
-      <div class="prow3">
-        <div class="pfield"><label class="plabel">멘션</label>
-          <input class="pinput" id="ps-reply-${id}" value="${tweets[id].reply || ''}" placeholder="0"
-            oninput="updateStat('${id}','reply',this.value)"></div>
-        <div class="pfield"><label class="plabel">리트윗</label>
-          <input class="pinput" id="ps-rt-${id}" value="${tweets[id].rt || ''}" placeholder="0"
-            oninput="updateStat('${id}','rt',this.value)"></div>
-        <div class="pfield"><label class="plabel">마음</label>
-          <input class="pinput" id="ps-like-${id}" value="${tweets[id].like || ''}" placeholder="0"
-            oninput="updateStat('${id}','like',this.value)"></div>
-      </div>
-    </div>`).join('');
+ const panel = document.getElementById('tweetPanel');
+ const ids = Object.keys(tweets);
+ if (!ids.length) {
+ panel.innerHTML = '<p style="font-size:12px;color:var(--t3);text-align:center;padding:4px 0">트윗을 추가하면 여기서 수정할 수 있어요</p>';
+ return;
+ }
+ panel.innerHTML = ids.map((id, i) =>`
+ <div class="tweet-setting">
+ <div class="tweet-setting-title">트윗 ${i + 1}</div>
+ <div class="pfield" style="margin-bottom:7px">
+ <label class="plabel">시간</label>
+ <input class="pinput" id="ps-time-${id}" value="${tweets[id].time || '방금'}" placeholder="방금"
+ oninput="updateTime('${id}',this.value)">
+ </div>
+ <div class="prow3">
+ <div class="pfield"><label class="plabel">멘션</label>
+ <input class="pinput" id="ps-reply-${id}" value="${tweets[id].reply || ''}" placeholder="0"
+ oninput="updateStat('${id}','reply',this.value)"></div>
+ <div class="pfield"><label class="plabel">리트윗</label>
+ <input class="pinput" id="ps-rt-${id}" value="${tweets[id].rt || ''}" placeholder="0"
+ oninput="updateStat('${id}','rt',this.value)"></div>
+ <div class="pfield"><label class="plabel">마음</label>
+ <input class="pinput" id="ps-like-${id}" value="${tweets[id].like || ''}" placeholder="0"
+ oninput="updateStat('${id}','like',this.value)"></div>
+ </div>
+ </div>`).join('');
 }
 
 function updateStat(id, stat, val) {
-  if (!tweets[id]) return;
-  tweets[id][stat] = val;
-  const el = document.getElementById(stat + '-' + id);
-  if (el) el.value = val;
+ if (!tweets[id]) return;
+ tweets[id][stat] = val;
+ const el = document.getElementById(stat + '-' + id);
+ if (el) el.value = val;
 }
 function updateTime(id, val) {
-  if (!tweets[id]) return;
-  tweets[id].time = val;
-  const el = document.querySelector('#' + id + ' .t-time');
-  if (el) { el.value = val || '방금'; autoSizeInput(el); }
+ if (!tweets[id]) return;
+ tweets[id].time = val;
+ const el = document.querySelector('#' + id + ' .t-time');
+ if (el) { el.value = val || '방금'; autoSizeInput(el); }
 }
 function autoSizeInput(inp) {
-  // 내용 길이에 맞게 input 너비 자동 조절
-  const tmp = document.createElement('span');
-  tmp.style.cssText = 'visibility:hidden;position:absolute;white-space:pre;font-size:12px;font-family:inherit;';
-  tmp.textContent = inp.value || inp.placeholder || '';
-  document.body.appendChild(tmp);
-  inp.style.width = Math.max(20, tmp.offsetWidth + 4) + 'px';
-  document.body.removeChild(tmp);
+ // 내용 길이에 맞게 input 너비 자동 조절
+ const tmp = document.createElement('span');
+ tmp.style.cssText = 'visibility:hidden;position:absolute;white-space:pre;font-size:12px;font-family:inherit;';
+ tmp.textContent = inp.value || inp.placeholder || '';
+ document.body.appendChild(tmp);
+ inp.style.width = Math.max(20, tmp.offsetWidth + 4) + 'px';
+ document.body.removeChild(tmp);
 }
 function syncStatPanel(id, stat, val) {
-  if (tweets[id]) tweets[id][stat] = val;
-  const p = document.getElementById('ps-' + stat + '-' + id);
-  if (p) p.value = val;
+ if (tweets[id]) tweets[id][stat] = val;
+ const p = document.getElementById('ps-' + stat + '-' + id);
+ if (p) p.value = val;
 }
 
 /* ── 트윗 추가/삭제 ── */
 function getAvSrc() {
-  const i = document.getElementById('avImg');
-  return (i.src && i.style.display !== 'none') ? i.src : '';
+ const i = document.getElementById('avImg');
+ return (i.src && i.style.display !== 'none') ? i.src : '';
 }
 
 function addTweet() {
-  tweetCnt++;
-  const id = 'tw' + tweetCnt;
-  tweets[id] = { reply: '', rt: '', like: '', time: '방금', imgSrc: '' };
-  const name = document.getElementById('nameEl').textContent || '이름';
-  const handle = document.getElementById('handleEl').textContent || '@ID';
-  const src = getAvSrc();
-  const d = document.createElement('div');
-  d.className = 'tweet'; d.id = id;
-  d.innerHTML = `
-    <div class="t-av">${src ? `<img src="${src}" alt="">` : ''}</div>
-    <div class="t-right">
-      <div class="t-head">
-        <span class="t-name">${name}</span>
-        <span class="t-handle">${handle}</span>
-        <span class="t-dot">·</span>
-        <input class="t-time" value="방금" spellcheck="false"
-          oninput="autoSizeInput(this);if(tweets['${id}'])tweets['${id}'].time=this.value;const p=document.getElementById('ps-time-${id}');if(p)p.value=this.value;">
-        <button class="del-btn hide-on-save" onclick="removeTweet('${id}')">×</button>
-      </div>
-      <textarea class="t-text" placeholder="트윗 내용을 입력하세요..." rows="1" spellcheck="false"
-        oninput="ar(this)"></textarea>
-      <div class="t-img-area" id="t-img-area-${id}" style="display:none">
-        <img id="t-img-${id}" src="" alt="">
-        <button class="t-img-del hide-on-save" onclick="removeTweetImg('${id}')">×</button>
-      </div>
-      <div class="t-actions">
-        <div class="t-acts-left">
-          <div class="t-act">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-            <input class="t-num" id="reply-${id}" placeholder="0" spellcheck="false"
-              oninput="autoSizeInput(this);syncStatPanel('${id}','reply',this.value)">
-          </div>
-          <div class="t-act">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
-            <input class="t-num" id="rt-${id}" placeholder="0" spellcheck="false"
-              oninput="autoSizeInput(this);syncStatPanel('${id}','rt',this.value)">
-          </div>
-          <div class="t-act">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-            <input class="t-num" id="like-${id}" placeholder="0" spellcheck="false"
-              oninput="autoSizeInput(this);syncStatPanel('${id}','like',this.value)">
-          </div>
-        </div>
-        <div class="t-acts-right">
-          <div class="t-act">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
-          </div>
-          <div class="t-act">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-          </div>
-          <button class="t-img-add hide-on-save" id="t-img-add-${id}" onclick="triggerTweetImg('${id}')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-          </button>
-        </div>
-      </div>
-    </div>`;
-  document.getElementById('tweetsWrap').appendChild(d);
-  setTimeout(() => { const ta = d.querySelector('.t-text'); if (ta) ar(ta); }, 10);
-  renderTweetPanel();
+ tweetCnt++;
+ const id = 'tw' + tweetCnt;
+ tweets[id] = { reply: '', rt: '', like: '', time: '방금', imgSrc: '' };
+ const name = document.getElementById('nameEl').textContent || '이름';
+ const handle = document.getElementById('handleEl').textContent || '@ID';
+ const src = getAvSrc();
+ const d = document.createElement('div');
+ d.className = 'tweet'; d.id = id;
+ d.innerHTML = `
+ <div class="t-av">${src ? `<img src="${src}" alt="">` : ''}</div>
+ <div class="t-right">
+ <div class="t-head">
+ <span class="t-name">${name}</span>
+ <span class="t-handle">${handle}</span>
+ <span class="t-dot">·</span>
+ <input class="t-time" value="방금" spellcheck="false"
+ oninput="autoSizeInput(this);if(tweets['${id}'])tweets['${id}'].time=this.value;const p=document.getElementById('ps-time-${id}');if(p)p.value=this.value;">
+ <button class="del-btn hide-on-save" onclick="removeTweet('${id}')">×</button>
+ </div>
+ <textarea class="t-text" placeholder="트윗 내용을 입력하세요..." rows="1" spellcheck="false"
+ oninput="ar(this)"></textarea>
+ <div class="t-img-area" id="t-img-area-${id}" style="display:none">
+ <img id="t-img-${id}" src="" alt="">
+ <button class="t-img-del hide-on-save" onclick="removeTweetImg('${id}')">×</button>
+ </div>
+ <div class="t-actions">
+ <div class="t-acts-left">
+ <div class="t-act">
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+ <input class="t-num" id="reply-${id}" placeholder="0" spellcheck="false"
+ oninput="autoSizeInput(this);syncStatPanel('${id}','reply',this.value)">
+ </div>
+ <div class="t-act">
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+ <input class="t-num" id="rt-${id}" placeholder="0" spellcheck="false"
+ oninput="autoSizeInput(this);syncStatPanel('${id}','rt',this.value)">
+ </div>
+ <div class="t-act">
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+ <input class="t-num" id="like-${id}" placeholder="0" spellcheck="false"
+ oninput="autoSizeInput(this);syncStatPanel('${id}','like',this.value)">
+ </div>
+ </div>
+ <div class="t-acts-right">
+ <div class="t-act">
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+ </div>
+ <div class="t-act">
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+ </div>
+ <button class="t-img-add hide-on-save" id="t-img-add-${id}" onclick="triggerTweetImg('${id}')">
+ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+ </button>
+ </div>
+ </div>
+ </div>`;
+ document.getElementById('tweetsWrap').appendChild(d);
+ setTimeout(() =>{ const ta = d.querySelector('.t-text'); if (ta) ar(ta); }, 10);
+ renderTweetPanel();
 }
 
 function removeTweet(id) {
-  const el = document.getElementById(id); if (el) el.remove();
-  delete tweets[id]; renderTweetPanel();
+ const el = document.getElementById(id); if (el) el.remove();
+ delete tweets[id]; renderTweetPanel();
 }
 
 let curTweetId = null;
 function triggerTweetImg(id) {
-  curTweetId = id;
-  document.getElementById('tweetFileIn').value = '';
-  document.getElementById('tweetFileIn').click();
+ curTweetId = id;
+ document.getElementById('tweetFileIn').value = '';
+ document.getElementById('tweetFileIn').click();
 }
 function onTweetFile(e) {
-  const f = e.target.files[0]; if (!f) return;
-  const r = new FileReader();
-  r.onload = ev => openTweetCrop(ev.target.result);
-  r.readAsDataURL(f);
+ const f = e.target.files[0]; if (!f) return;
+ const r = new FileReader();
+ r.onload = ev =>openTweetCrop(ev.target.result);
+ r.readAsDataURL(f);
 }
 function openTweetCrop(src) {
-  document.getElementById('cropTitle').textContent = '트윗 사진 자르기';
-  const img = document.getElementById('cropImg'); img.src = src;
-  // store mode so applyCrop knows what to do
-  uploadType = 'tweet';
-  document.getElementById('cropModal').classList.add('open');
-  setTimeout(() => {
-    if (cropper) cropper.destroy();
-    cropper = new Cropper(img, { aspectRatio: NaN, viewMode: 1, autoCropArea: 1, free: true });
-  }, 100);
+ document.getElementById('cropTitle').textContent = '트윗 사진 자르기';
+ const img = document.getElementById('cropImg'); img.src = src;
+ // store mode so applyCrop knows what to do
+ uploadType = 'tweet';
+ document.getElementById('cropModal').classList.add('open');
+ setTimeout(() =>{
+ if (cropper) cropper.destroy();
+ cropper = new Cropper(img, { aspectRatio: NaN, viewMode: 1, autoCropArea: 1, free: true });
+ }, 100);
 }
 function removeTweetImg(id) {
-  document.getElementById('t-img-area-' + id).style.display = 'none';
-  document.getElementById('t-img-' + id).src = '';
-  document.getElementById('t-img-add-' + id).style.display = '';
-  if (tweets[id]) tweets[id].imgSrc = '';
+ document.getElementById('t-img-area-' + id).style.display = 'none';
+ document.getElementById('t-img-' + id).src = '';
+ document.getElementById('t-img-add-' + id).style.display = '';
+ if (tweets[id]) tweets[id].imgSrc = '';
 }
 
 function setCredit(val) {
-  const wrap = document.getElementById('hdrCredit');
-  const span = document.getElementById('hdrCreditText');
-  if (val.trim()) {
-    span.textContent = val;
-    wrap.style.display = 'block';
-  } else {
-    wrap.style.display = 'none';
-  }
+ const wrap = document.getElementById('hdrCredit');
+ const span = document.getElementById('hdrCreditText');
+ if (val.trim()) {
+ span.textContent = val;
+ wrap.style.display = 'block';
+ } else {
+ wrap.style.display = 'none';
+ }
 }
 // 기본값 바로 표시
 // setCredit('Dearhikoboshi'); // 자동 표시 제거
 function setCreditColor(val) {
-  document.getElementById('hdrCredit').style.setProperty('--credit-color', val);
+ document.getElementById('hdrCredit').style.setProperty('--credit-color', val);
 }
 
 function syncTweetAvatars(src) {
-  document.querySelectorAll('.t-av').forEach(el => {
-    el.innerHTML = src
-      ? `<img src="${src}" alt="" style="width:100%;height:100%;object-fit:cover;display:block">`
-      : '';
-  });
+ document.querySelectorAll('.t-av').forEach(el =>{
+ el.innerHTML = src
+ ? `<img src="${src}" alt="" style="width:100%;height:100%;object-fit:cover;display:block">`
+ : '';
+ });
 }
 
 /* ── 업로드 / 크롭 ── */
 function upload(type) {
-  uploadType = type;
-  document.getElementById('fileIn').value = '';
-  document.getElementById('fileIn').click();
+ uploadType = type;
+ document.getElementById('fileIn').value = '';
+ document.getElementById('fileIn').click();
 }
 function onFile(e) {
-  const f = e.target.files[0]; if (!f) return;
-  const r = new FileReader();
-  r.onload = ev => openCrop(ev.target.result);
-  r.readAsDataURL(f);
+ const f = e.target.files[0]; if (!f) return;
+ const r = new FileReader();
+ r.onload = ev =>openCrop(ev.target.result);
+ r.readAsDataURL(f);
 }
 function openCrop(src) {
-  document.getElementById('cropTitle').textContent = uploadType === 'header' ? '헤더 자르기' : '프로필 자르기';
-  const img = document.getElementById('cropImg'); img.src = src;
-  document.getElementById('cropModal').classList.add('open');
-  setTimeout(() => {
-    if (cropper) cropper.destroy();
-    cropper = new Cropper(img, { aspectRatio: uploadType === 'header' ? 460/110 : 1, viewMode: 1, autoCropArea: 1 });
-  }, 100);
+ document.getElementById('cropTitle').textContent = uploadType === 'header' ? '헤더 자르기' : '프로필 자르기';
+ const img = document.getElementById('cropImg'); img.src = src;
+ document.getElementById('cropModal').classList.add('open');
+ setTimeout(() =>{
+ if (cropper) cropper.destroy();
+ cropper = new Cropper(img, { aspectRatio: uploadType === 'header' ? 460/110 : 1, viewMode: 1, autoCropArea: 1 });
+ }, 100);
 }
 function closeModal() {
-  document.getElementById('cropModal').classList.remove('open');
-  if (cropper) { cropper.destroy(); cropper = null; }
+ document.getElementById('cropModal').classList.remove('open');
+ if (cropper) { cropper.destroy(); cropper = null; }
 }
 function applyCrop() {
-  if (!cropper) return;
-  const raw = cropper.getCroppedCanvas({ maxWidth: 2400, maxHeight: 2400 });
-  const flat = document.createElement('canvas'); flat.width = raw.width; flat.height = raw.height;
-  const ctx = flat.getContext('2d');
-  ctx.imageSmoothingEnabled = true;
-  ctx.imageSmoothingQuality = 'high';
-  ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, flat.width, flat.height); ctx.drawImage(raw, 0, 0);
-  const url = flat.toDataURL('image/png');
-  if (uploadType === 'header') {
-    const i = document.getElementById('hdrImg'); i.src = url; i.style.display = 'block';
-    document.getElementById('hdrZone').style.backgroundColor = 'transparent';
-  } else if (uploadType === 'tweet') {
-    const id = curTweetId;
-    if (id) {
-      document.getElementById('t-img-' + id).src = url;
-      document.getElementById('t-img-area-' + id).style.display = 'block';
-      document.getElementById('t-img-add-' + id).style.display = 'none';
-      if (tweets[id]) tweets[id].imgSrc = url;
-    }
-  } else {
-    const i = document.getElementById('avImg'); i.src = url; i.style.display = 'block';
-    document.getElementById('avZone').style.background = '#fff';
-    syncTweetAvatars(url);
-  }
-  closeModal();
+ if (!cropper) return;
+ const raw = cropper.getCroppedCanvas({ maxWidth: 2400, maxHeight: 2400 });
+ const flat = document.createElement('canvas'); flat.width = raw.width; flat.height = raw.height;
+ const ctx = flat.getContext('2d');
+ ctx.imageSmoothingEnabled = true;
+ ctx.imageSmoothingQuality = 'high';
+ ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, flat.width, flat.height); ctx.drawImage(raw, 0, 0);
+ const url = flat.toDataURL('image/png');
+ if (uploadType === 'header') {
+ const i = document.getElementById('hdrImg'); i.src = url; i.style.display = 'block';
+ document.getElementById('hdrZone').style.backgroundColor = 'transparent';
+ } else if (uploadType === 'tweet') {
+ const id = curTweetId;
+ if (id) {
+ document.getElementById('t-img-' + id).src = url;
+ document.getElementById('t-img-area-' + id).style.display = 'block';
+ document.getElementById('t-img-add-' + id).style.display = 'none';
+ if (tweets[id]) tweets[id].imgSrc = url;
+ }
+ } else {
+ const i = document.getElementById('avImg'); i.src = url; i.style.display = 'block';
+ document.getElementById('avZone').style.background = '#fff';
+ syncTweetAvatars(url);
+ }
+ closeModal();
 }
 
 /* ── 저장: html2canvas ── */
 async function saveCard() {
-  const btn = document.getElementById('saveBtn');
-  btn.disabled = true; btn.textContent = '저장 중...';
-  showToast('💾 저장 중...', 30000);
+ const btn = document.getElementById('saveBtn');
+ btn.disabled = true; btn.textContent = '저장 중...';
+ showToast(' 저장 중...', 30000);
 
-  const card = document.getElementById('card');
-  const isMobile = window.innerWidth <= 768;
-  const CARD_W = isMobile ? Math.round(card.getBoundingClientRect().width) : 380;
+ const card = document.getElementById('card');
+ const isMobile = window.innerWidth <= 768;
+ const CARD_W = isMobile ? Math.round(card.getBoundingClientRect().width) : 380;
 
-  // UI 숨기기
-  const hideEls = card.querySelectorAll('.hide-on-save');
-  hideEls.forEach(el => { el.dataset.prev = el.style.display; el.style.display = 'none'; });
-  const ces = card.querySelectorAll('[contenteditable]');
-  ces.forEach(el => el.setAttribute('contenteditable', 'false'));
-  document.activeElement?.blur();
+ // UI 숨기기
+ const hideEls = card.querySelectorAll('.hide-on-save');
+ hideEls.forEach(el =>{ el.dataset.prev = el.style.display; el.style.display = 'none'; });
+ const ces = card.querySelectorAll('[contenteditable]');
+ ces.forEach(el =>el.setAttribute('contenteditable', 'false'));
+ document.activeElement?.blur();
 
-  // body 너비를 카드 너비로 강제 → html2canvas가 이 기준으로 렌더링
-  const prevBodyW = document.body.style.width;
-  const prevBodyOverflow = document.body.style.overflow;
-  document.body.style.width = CARD_W + 'px';
-  document.body.style.overflow = 'hidden';
+ // body 너비를 카드 너비로 강제 → html2canvas가 이 기준으로 렌더링
+ const prevBodyW = document.body.style.width;
+ const prevBodyOverflow = document.body.style.overflow;
+ document.body.style.width = CARD_W + 'px';
+ document.body.style.overflow = 'hidden';
 
-  // 카드 너비도 고정
-  const prevCardW = card.style.width;
-  const prevCardMax = card.style.maxWidth;
-  const prevCardMin = card.style.minWidth;
-  card.style.width = CARD_W + 'px';
-  card.style.maxWidth = CARD_W + 'px';
-  card.style.minWidth = CARD_W + 'px';
+ // 카드 너비도 고정
+ const prevCardW = card.style.width;
+ const prevCardMax = card.style.maxWidth;
+ const prevCardMin = card.style.minWidth;
+ card.style.width = CARD_W + 'px';
+ card.style.maxWidth = CARD_W + 'px';
+ card.style.minWidth = CARD_W + 'px';
 
-  await new Promise(r => setTimeout(r, 200));
+ await new Promise(r =>setTimeout(r, 200));
 
-  const SCALE = 3;
+ const SCALE = 3;
 
-  // 헤더 이미지: html2canvas object-fit:cover 미지원 → 사전 캔버스로 교체
-  const hdrImg = document.getElementById('hdrImg');
-  const hdrZone = document.getElementById('hdrZone');
-  let hdrPreCanvas = null;
-  if (hdrImg && hdrImg.style.display !== 'none' && hdrImg.naturalWidth > 0) {
-    const cW = CARD_W, cH = 110;
-    const nW = hdrImg.naturalWidth, nH = hdrImg.naturalHeight;
-    const s = Math.max(cW / nW, cH / nH);
-    const dW = nW * s, dH = nH * s;
-    const dx = (cW - dW) / 2, dy = (cH - dH) / 2;
-    hdrPreCanvas = document.createElement('canvas');
-    hdrPreCanvas.width = cW * SCALE; hdrPreCanvas.height = cH * SCALE;
-    hdrPreCanvas.style.cssText = `position:absolute;top:0;left:0;width:${cW}px;height:${cH}px;display:block;`;
-    const ctx = hdrPreCanvas.getContext('2d');
-    ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
-    ctx.drawImage(hdrImg, dx * SCALE, dy * SCALE, dW * SCALE, dH * SCALE);
-    hdrImg.style.display = 'none';
-    hdrZone.insertBefore(hdrPreCanvas, hdrZone.firstChild);
-  }
+ // 헤더 이미지: html2canvas object-fit:cover 미지원 → 사전 캔버스로 교체
+ const hdrImg = document.getElementById('hdrImg');
+ const hdrZone = document.getElementById('hdrZone');
+ let hdrPreCanvas = null;
+ if (hdrImg && hdrImg.style.display !== 'none' && hdrImg.naturalWidth >0) {
+ const cW = CARD_W, cH = 110;
+ const nW = hdrImg.naturalWidth, nH = hdrImg.naturalHeight;
+ const s = Math.max(cW / nW, cH / nH);
+ const dW = nW * s, dH = nH * s;
+ const dx = (cW - dW) / 2, dy = (cH - dH) / 2;
+ hdrPreCanvas = document.createElement('canvas');
+ hdrPreCanvas.width = cW * SCALE; hdrPreCanvas.height = cH * SCALE;
+ hdrPreCanvas.style.cssText = `position:absolute;top:0;left:0;width:${cW}px;height:${cH}px;display:block;`;
+ const ctx = hdrPreCanvas.getContext('2d');
+ ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
+ ctx.drawImage(hdrImg, dx * SCALE, dy * SCALE, dW * SCALE, dH * SCALE);
+ hdrImg.style.display = 'none';
+ hdrZone.insertBefore(hdrPreCanvas, hdrZone.firstChild);
+ }
 
-  // 프로필 아바타: 동일하게 사전 캔버스 처리
-  const avImg = document.getElementById('avImg');
-  const avZone = document.getElementById('avZone');
-  let avPreCanvas = null;
-  if (avImg && avImg.style.display !== 'none' && avImg.naturalWidth > 0) {
-    const cS = 74;
-    const nW = avImg.naturalWidth, nH = avImg.naturalHeight;
-    const s = Math.max(cS / nW, cS / nH);
-    const dW = nW * s, dH = nH * s;
-    const dx = (cS - dW) / 2, dy = (cS - dH) / 2;
-    avPreCanvas = document.createElement('canvas');
-    avPreCanvas.width = cS * SCALE; avPreCanvas.height = cS * SCALE;
-    avPreCanvas.style.cssText = `position:absolute;top:0;left:0;width:${cS}px;height:${cS}px;border-radius:50%;display:block;`;
-    const ctx = avPreCanvas.getContext('2d');
-    ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
-    ctx.drawImage(avImg, dx * SCALE, dy * SCALE, dW * SCALE, dH * SCALE);
-    avImg.style.display = 'none';
-    avZone.appendChild(avPreCanvas);
-  }
+ // 프로필 아바타: 동일하게 사전 캔버스 처리
+ const avImg = document.getElementById('avImg');
+ const avZone = document.getElementById('avZone');
+ let avPreCanvas = null;
+ if (avImg && avImg.style.display !== 'none' && avImg.naturalWidth >0) {
+ const cS = 74;
+ const nW = avImg.naturalWidth, nH = avImg.naturalHeight;
+ const s = Math.max(cS / nW, cS / nH);
+ const dW = nW * s, dH = nH * s;
+ const dx = (cS - dW) / 2, dy = (cS - dH) / 2;
+ avPreCanvas = document.createElement('canvas');
+ avPreCanvas.width = cS * SCALE; avPreCanvas.height = cS * SCALE;
+ avPreCanvas.style.cssText = `position:absolute;top:0;left:0;width:${cS}px;height:${cS}px;border-radius:50%;display:block;`;
+ const ctx = avPreCanvas.getContext('2d');
+ ctx.imageSmoothingEnabled = true; ctx.imageSmoothingQuality = 'high';
+ ctx.drawImage(avImg, dx * SCALE, dy * SCALE, dW * SCALE, dH * SCALE);
+ avImg.style.display = 'none';
+ avZone.appendChild(avPreCanvas);
+ }
 
-  try {
-    const canvas = await html2canvas(card, {
-      scale: 3,
-      useCORS: true,
-      allowTaint: true,
-      backgroundColor: '#ffffff',
-      logging: false,
-      imageTimeout: 15000,
-      removeContainer: true,
-      foreignObjectRendering: false,
-      width: CARD_W,
-      windowWidth: CARD_W,
-      onclone: (doc) => {
-        doc.querySelectorAll('.hide-on-save').forEach(el => el.style.display = 'none');
-        doc.body.style.width = CARD_W + 'px';
-        const c = doc.getElementById('card');
-        if (c) { c.style.width = CARD_W + 'px'; c.style.maxWidth = CARD_W + 'px'; c.style.minWidth = CARD_W + 'px'; }
-        // textarea → div
-        doc.querySelectorAll('textarea.t-text').forEach(ta => {
-          const div = doc.createElement('div');
-          div.textContent = ta.value;
-          div.style.cssText = 'font-size:13px;line-height:1.5;color:#0F1419;font-family:inherit;width:100%;word-break:break-word;white-space:pre-wrap;min-height:20px;';
-          ta.parentNode.replaceChild(div, ta);
-        });
-        doc.querySelectorAll('textarea.bio-ta').forEach(ta => {
-          const val = ta.value;
-          const div = doc.createElement('div');
-          div.textContent = val || ta.placeholder;
-          div.style.cssText = `font-size:14px;line-height:1.5;color:${val?'#0F1419':'#8B98A5'};font-family:inherit;width:100%;word-break:break-word;white-space:pre-wrap;margin-top:10px;`;
-          ta.parentNode.replaceChild(div, ta);
-        });
-        // input → span
-        doc.querySelectorAll('input.t-num,input.fol-num,input.t-time,input.meta-in').forEach(inp => {
-          const span = doc.createElement('span');
-          span.textContent = inp.value;
-          const cs = getComputedStyle(inp);
-          span.style.cssText = `font-size:${cs.fontSize};color:${cs.color};font-family:${cs.fontFamily};font-weight:${cs.fontWeight};white-space:nowrap;`;
-          inp.parentNode.replaceChild(span, inp);
-        });
-      }
-    });
+ try {
+ const canvas = await html2canvas(card, {
+ scale: 3,
+ useCORS: true,
+ allowTaint: true,
+ backgroundColor: '#ffffff',
+ logging: false,
+ imageTimeout: 15000,
+ removeContainer: true,
+ foreignObjectRendering: false,
+ width: CARD_W,
+ windowWidth: CARD_W,
+ onclone: (doc) =>{
+ doc.querySelectorAll('.hide-on-save').forEach(el =>el.style.display = 'none');
+ doc.body.style.width = CARD_W + 'px';
+ const c = doc.getElementById('card');
+ if (c) { c.style.width = CARD_W + 'px'; c.style.maxWidth = CARD_W + 'px'; c.style.minWidth = CARD_W + 'px'; }
+ // textarea → div
+ doc.querySelectorAll('textarea.t-text').forEach(ta =>{
+ const div = doc.createElement('div');
+ div.textContent = ta.value;
+ div.style.cssText = 'font-size:13px;line-height:1.5;color:#0F1419;font-family:inherit;width:100%;word-break:break-word;white-space:pre-wrap;min-height:20px;';
+ ta.parentNode.replaceChild(div, ta);
+ });
+ doc.querySelectorAll('textarea.bio-ta').forEach(ta =>{
+ const val = ta.value;
+ const div = doc.createElement('div');
+ div.textContent = val || ta.placeholder;
+ div.style.cssText = `font-size:14px;line-height:1.5;color:${val?'#0F1419':'#8B98A5'};font-family:inherit;width:100%;word-break:break-word;white-space:pre-wrap;margin-top:10px;`;
+ ta.parentNode.replaceChild(div, ta);
+ });
+ // input → span
+ doc.querySelectorAll('input.t-num,input.fol-num,input.t-time,input.meta-in').forEach(inp =>{
+ const span = doc.createElement('span');
+ span.textContent = inp.value;
+ const cs = getComputedStyle(inp);
+ span.style.cssText = `font-size:${cs.fontSize};color:${cs.color};font-family:${cs.fontFamily};font-weight:${cs.fontWeight};white-space:nowrap;`;
+ inp.parentNode.replaceChild(span, inp);
+ });
+ }
+ });
 
-    // 흰 여백
-    const PAD = 80;
-    const padded = document.createElement('canvas');
-    padded.width  = canvas.width  + PAD * 2;
-    padded.height = canvas.height + PAD * 2;
-    const pctx = padded.getContext('2d');
-    pctx.fillStyle = '#ffffff';
-    pctx.fillRect(0, 0, padded.width, padded.height);
-    pctx.drawImage(canvas, PAD, PAD);
-    padded.toBlob(blob => {
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = 'profile-card.png';
-      document.body.appendChild(a); a.click();
-      setTimeout(() => { URL.revokeObjectURL(a.href); document.body.removeChild(a); }, 200);
-      showToast('✅ 저장 완료!');
-    }, 'image/png');
+ // 흰 여백
+ const PAD = 80;
+ const padded = document.createElement('canvas');
+ padded.width = canvas.width + PAD * 2;
+ padded.height = canvas.height + PAD * 2;
+ const pctx = padded.getContext('2d');
+ pctx.fillStyle = '#ffffff';
+ pctx.fillRect(0, 0, padded.width, padded.height);
+ pctx.drawImage(canvas, PAD, PAD);
+ padded.toBlob(blob =>{
+ const a = document.createElement('a');
+ a.href = URL.createObjectURL(blob);
+ a.download = 'profile-card.png';
+ document.body.appendChild(a); a.click();
+ setTimeout(() =>{ URL.revokeObjectURL(a.href); document.body.removeChild(a); }, 200);
+ showToast(' 저장 완료!');
+ }, 'image/png');
 
-  } catch (err) {
-    console.error(err);
-    showToast('⚠️ 저장 실패: ' + err.message, 5000);
-  }
+ } catch (err) {
+ console.error(err);
+ showToast(' 저장 실패: ' + err.message, 5000);
+ }
 
-  // 복원
-  if (hdrPreCanvas) { hdrPreCanvas.remove(); hdrImg.style.display = 'block'; }
-  if (avPreCanvas) { avPreCanvas.remove(); avImg.style.display = 'block'; }
-  document.body.style.width = prevBodyW;
-  document.body.style.overflow = prevBodyOverflow;
-  card.style.width = prevCardW;
-  card.style.maxWidth = prevCardMax;
-  card.style.minWidth = prevCardMin;
-  hideEls.forEach(el => { el.style.display = el.dataset.prev || ''; });
-  ces.forEach(el => el.setAttribute('contenteditable', 'true'));
-  btn.disabled = false; btn.textContent = 'PNG 저장';
+ // 복원
+ if (hdrPreCanvas) { hdrPreCanvas.remove(); hdrImg.style.display = 'block'; }
+ if (avPreCanvas) { avPreCanvas.remove(); avImg.style.display = 'block'; }
+ document.body.style.width = prevBodyW;
+ document.body.style.overflow = prevBodyOverflow;
+ card.style.width = prevCardW;
+ card.style.maxWidth = prevCardMax;
+ card.style.minWidth = prevCardMin;
+ hideEls.forEach(el =>{ el.style.display = el.dataset.prev || ''; });
+ ces.forEach(el =>el.setAttribute('contenteditable', 'true'));
+ btn.disabled = false; btn.textContent = 'PNG 저장';
 }
 
 
